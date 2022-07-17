@@ -1,9 +1,12 @@
-import UserFinder from './components/UserFinder';
+import ErrorBoundary from "./components/ErrorBoundary";
+import UserFinder from "./components/UserFinder";
 
 function App() {
   return (
     <div>
-      <UserFinder />
+      <ErrorBoundary>
+        <UserFinder />
+      </ErrorBoundary>
     </div>
   );
 }

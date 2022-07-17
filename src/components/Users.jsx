@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { ErrorContext } from "./ErrorBoundary";
 import User from "./User";
 
 import classes from "./Users.module.css";
@@ -29,11 +30,18 @@ import classes from "./Users.module.css";
 // };
 
 class Users extends Component {
+  static contextType = ErrorContext;
   constructor() {
     super();
     //   const [showUsers, setShowUsers] = useState(true);
     this.state = { showUsers: true };
   }
+
+  componentDidUpdate() {
+    // if (this.props.users.length === 0) throw new Error("No users provided");
+    this.context.errorHasOccurred(new Error("No users provided"));
+  }
+
   toggleUsersHandler() {
     // setShowUsers((curState) => !curState);
     this.setState((latestState) => {
